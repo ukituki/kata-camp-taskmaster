@@ -103,8 +103,14 @@ Write-Host ""
 Write-Host "Checking AI Model API Keys..." -ForegroundColor Cyan
 
 # Load .env file if it exists
-if (Test-Path .env) {
-    Get-Content .env | ForEach-Object {
+# Script is in steps/0-setup/, so project root is two levels up
+$ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectRoot = Split-Path -Parent (Split-Path -Parent $ScriptPath)
+$EnvFile = Join-Path $ProjectRoot ".env"
+$EnvExample = Join-Path $ProjectRoot ".env.example"
+
+if (Test-Path $EnvFile) {
+    Get-Content $EnvFile | ForEach-Object {
         if ($_ -match '^\s*([^#][^=]+)=(.*)$') {
             $key = $matches[1].Trim()
             $value = $matches[2].Trim()
@@ -113,7 +119,10 @@ if (Test-Path .env) {
             }
         }
     }
-    Print-Info "Found .env file in project directory"
+    Print-Info "Found .env file in project root"
+} elseif (Test-Path $EnvExample) {
+    Print-Info ".env.example file found in project root - copy it to .env and add your keys"
+    Print-Info "  Run: Copy-Item '$EnvExample' '$EnvFile'"
 }
 
 function Check-ApiKey {
@@ -152,7 +161,7 @@ if ($ApiKeysFound -eq 0) {
     Print-Error "No AI model API keys found in environment variables or .env file"
     Print-Info ""
     Print-Info "  → QUICK SETUP: Create a .env file in your project root:"
-    Print-Info "    1. Copy the example file: Copy-Item .env.example .env"
+    Print-Info "    1. Copy the example file: Copy-Item '$EnvExample' '$EnvFile'"
     Print-Info "    2. Edit .env and add your API keys"
     Print-Info "    3. Taskmaster will automatically load keys from .env file"
     Print-Info ""
@@ -188,14 +197,6 @@ if ($ApiKeysFound -eq 0) {
 }
 Write-Host ""
 
-# Check if task-master-ai is available (quick check - just verify npx exists)
-Write-Host "Checking task-master-ai package..." -ForegroundColor Cyan
-if (Get-Command npx -ErrorAction SilentlyContinue) {
-    Print-Success "npx is available (task-master-ai will be downloaded automatically when first used)"
-} else {
-    Print-Error "npx is not available (should come with npm)"
-}
-Write-Host ""
 
 # Summary
 Write-Host "========================================" -ForegroundColor Cyan
@@ -203,25 +204,34 @@ if ($AllPassed -and $ApiKeysFound -gt 0) {
     Write-Host "✓ All prerequisites are met!" -ForegroundColor Green
     Write-Host ""
     Write-Host "Next steps:" -ForegroundColor Green
-    Write-Host "  1. Navigate to your project directory"
-    Write-Host "  2. Initialize Taskmaster: npx task-master-ai init"
-    Write-Host "  3. Configure models: npx task-master-ai models --set-main claude-3-5-sonnet-20241022"
-    Write-Host "  4. Start the kata session!"
+    Write-Host "  1. Navigate to Step 1 folder:"
+    Write-Host "     cd ..\1-tm-basics" -ForegroundColor Cyan
+    Write-Host "  2. Open Step 1 instructions:"
+    Write-Host "     Get-Content README.md" -ForegroundColor Cyan
+    Write-Host "     (or open README.md in your editor)"
+    Write-Host "  3. Install Taskmaster globally (instructions in Step 1)"
 } elseif ($AllPassed -and $ApiKeysFound -eq 0) {
     Write-Host "⚠ Prerequisites installed, but API keys are missing" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "Next steps:" -ForegroundColor Yellow
-    Write-Host "  1. Create .env file: Copy-Item .env.example .env"
+    Write-Host "  1. Create .env file: Copy-Item '$EnvExample' '$EnvFile'"
     Write-Host "  2. Edit .env and add your API keys"
     Write-Host "  3. Run this script again to verify: .\check-prerequisites.ps1"
-    Write-Host "  4. Then initialize Taskmaster: npx task-master-ai init"
+    Write-Host "  4. Once all checks pass, navigate to Step 1:"
+    Write-Host "     cd ..\1-tm-basics" -ForegroundColor Cyan
 } else {
     Write-Host "✗ Some prerequisites are missing" -ForegroundColor Red
     Write-Host ""
     Write-Host "Next steps:" -ForegroundColor Yellow
     Write-Host "  1. Install missing prerequisites (see suggestions above)"
-    Write-Host "  2. Run this script again: .\check-prerequisites.ps1"
-    Write-Host "  3. Once all checks pass, initialize Taskmaster: npx task-master-ai init"
+    $step = 2
+    if ($ApiKeysFound -eq 0) {
+        Write-Host "  $step. Create .env file: Copy-Item '$EnvExample' '$EnvFile'"
+        $step++
+    }
+    Write-Host "  $step. Run this script again: .\check-prerequisites.ps1"
+    Write-Host "  $($step + 1). Once all checks pass, navigate to Step 1:"
+    Write-Host "     cd ..\1-tm-basics" -ForegroundColor Cyan
 }
 Write-Host "========================================" -ForegroundColor Cyan
 

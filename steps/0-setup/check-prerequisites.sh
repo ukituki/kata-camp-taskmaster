@@ -106,15 +106,21 @@ echo -e "${BLUE}Checking AI Model API Keys...${NC}"
 API_KEYS_FOUND=0
 
 # Load .env file if it exists (for checking)
-if [ -f .env ]; then
+# Script is in steps/0-setup/, so project root is two levels up
+PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+ENV_FILE="$PROJECT_ROOT/.env"
+ENV_EXAMPLE="$PROJECT_ROOT/.env.example"
+
+if [ -f "$ENV_FILE" ]; then
     # Source .env file to check for keys (use a subshell to avoid polluting current env)
     # Export variables from .env file
     set -a
-    source .env 2>/dev/null || true
+    source "$ENV_FILE" 2>/dev/null || true
     set +a
-    print_info "Found .env file in project directory"
-elif [ -f .env.example ]; then
-    print_info ".env.example file found - copy it to .env and add your keys"
+    print_info "Found .env file in project root"
+elif [ -f "$ENV_EXAMPLE" ]; then
+    print_info ".env.example file found in project root - copy it to .env and add your keys"
+    print_info "  Run: cp $ENV_EXAMPLE $ENV_FILE"
 fi
 
 check_api_key() {
@@ -148,7 +154,7 @@ if [ $API_KEYS_FOUND -eq 0 ]; then
     print_warning "No AI model API keys found in environment variables or .env file"
     print_info ""
     print_info "  → QUICK SETUP: Create a .env file in your project root:"
-    print_info "    1. Copy the example file: cp .env.example .env"
+    print_info "    1. Copy the example file: cp $ENV_EXAMPLE $ENV_FILE"
     print_info "    2. Edit .env and add your API keys"
     print_info "    3. Taskmaster will automatically load keys from .env file"
     print_info ""
@@ -170,14 +176,6 @@ else
 fi
 echo ""
 
-# Check if task-master-ai is available (quick check - just verify npx exists)
-echo -e "${BLUE}Checking task-master-ai package...${NC}"
-if command -v npx &> /dev/null; then
-    print_success "npx is available (task-master-ai will be downloaded automatically when first used)"
-else
-    print_error "npx is not available (should come with npm)"
-fi
-echo ""
 
 # Summary
 echo -e "${BLUE}========================================${NC}"
@@ -185,18 +183,21 @@ if [ "$ALL_PASSED" = true ] && [ $API_KEYS_FOUND -gt 0 ]; then
     echo -e "${GREEN}✓ All prerequisites are met!${NC}"
     echo ""
     echo -e "${GREEN}Next steps:${NC}"
-    echo "  1. Navigate to your project directory"
-    echo "  2. Initialize Taskmaster: npx task-master-ai init"
-    echo "  3. Configure models: npx task-master-ai models --set-main claude-3-5-sonnet-20241022"
-    echo "  4. Start the kata session!"
+    echo "  1. Navigate to Step 1 folder:"
+    echo -e "     ${BLUE}cd ../1-tm-basics${NC}"
+    echo "  2. Open Step 1 instructions:"
+    echo -e "     ${BLUE}cat README.md${NC}"
+    echo "     (or open README.md in your editor)"
+    echo "  3. Install Taskmaster globally (instructions in Step 1)"
 elif [ "$ALL_PASSED" = true ] && [ $API_KEYS_FOUND -eq 0 ]; then
     echo -e "${YELLOW}⚠ Prerequisites installed, but API keys are missing${NC}"
     echo ""
     echo -e "${YELLOW}Next steps:${NC}"
-    echo "  1. Create .env file: cp .env.example .env"
+    echo "  1. Create .env file: cp $ENV_EXAMPLE $ENV_FILE"
     echo "  2. Edit .env and add your API keys"
     echo "  3. Run this script again to verify: ./check-prerequisites.sh"
-    echo "  4. Then initialize Taskmaster: npx task-master-ai init"
+    echo "  4. Once all checks pass, navigate to Step 1:"
+    echo -e "     ${BLUE}cd ../1-tm-basics${NC}"
 else
     echo -e "${RED}✗ Some prerequisites are missing${NC}"
     echo ""
@@ -204,11 +205,12 @@ else
     echo "  1. Install missing prerequisites (see suggestions above)"
     STEP=2
     if [ $API_KEYS_FOUND -eq 0 ]; then
-        echo "  $STEP. Create .env file: cp .env.example .env (and add your API keys)"
+        echo "  $STEP. Create .env file: cp $ENV_EXAMPLE $ENV_FILE"
         STEP=$((STEP + 1))
     fi
     echo "  $STEP. Run this script again: ./check-prerequisites.sh"
-    echo "  $((STEP + 1)). Once all checks pass, initialize Taskmaster: npx task-master-ai init"
+    echo "  $((STEP + 1)). Once all checks pass, navigate to Step 1:"
+    echo -e "     ${BLUE}cd ../1-tm-basics${NC}"
 fi
 echo -e "${BLUE}========================================${NC}"
 
