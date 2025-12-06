@@ -22,38 +22,43 @@ Track your progress through the kata session by checking off completed steps.
 - [ ] Include technical requirements
 - [ ] Save PRD file
 
-## 2. TM: Install Taskmaster & Basic CLI
+## 2. Initialize Taskmaster & Parse PRD
 
 - [ ] Install Taskmaster globally: `npm install -g task-master-ai`
 - [ ] Verify installation: `which task-master` (shows installation path)
 - [ ] Navigate to project root
 - [ ] Initialize Taskmaster: `task-master init` (in project root)
-- [ ] Check models: `task-master models`
-- [ ] List tasks: `task-master list` (should be empty initially)
-- [ ] Update task status: `task-master set-status --id=<id> --status=done`
-- [ ] Create a tag: `task-master tags add kata-session`
-- [ ] Switch to tag: `task-master tags use kata-session`
-
-## 3. Plan → Tasks: Parse PRD
-
+- [ ] Configure models: `task-master models` (verify API keys)
 - [ ] Parse PRD: `task-master parse-prd --input steps/1-prd/my-prd.md`
-- [ ] Review generated tasks: `task-master list`
-- [ ] Expand a complex task: `task-master expand --id=<id>`
-- [ ] Check dependencies: `task-master validate-dependencies`
-- [ ] Review task list and organize
+- [ ] List generated tasks: `task-master list`
+- [ ] View task details: `task-master show <task-id>`
+- [ ] Expand a complex task: `task-master expand --id=<task-id>`
+- [ ] Validate dependencies: `task-master validate-dependencies`
 
-## 4. Task → Code: First Autopilot Task
+## 3. Advanced Features
 
-- [ ] Select a simple task to implement
+- [ ] Create and manage dependencies: `task-master add-dependency --id=<id> --depends-on=<dep-id>`
+- [ ] Create tags: `task-master tags add <name>`
+- [ ] Switch tag context: `task-master tags use <name>`
+- [ ] Perform AI research: `task-master research --query "..." --save-to-file`
+- [ ] Analyze complexity: `task-master analyze-project-complexity`
+- [ ] View complexity report: `task-master complexity-report`
+- [ ] Scope down a complex task: `task-master scope-down-task --id=<id>`
+- [ ] Update task with AI: `task-master update-task --id=<id> --prompt "..."`
+
+## 4. Autopilot TDD & MCP Integration
+
+- [ ] Select a task for autopilot: `task-master list --status pending`
 - [ ] Start autopilot: `task-master autopilot-start --task-id=<id>`
-- [ ] Check status: `task-master autopilot-status`
+- [ ] Check autopilot status: `task-master autopilot-status`
 - [ ] Get next action: `task-master autopilot-next`
 - [ ] Complete RED phase (write failing tests)
 - [ ] Complete GREEN phase (implement to pass tests)
 - [ ] Commit changes: `task-master autopilot-commit`
 - [ ] Finalize workflow: `task-master autopilot-finalize`
+- [ ] Test MCP in editor: Use AI chat to manage tasks
+- [ ] Create task via MCP: Ask AI to create a task from editor
 
 ---
 
 **Congratulations!** 🎉 You've completed the Taskmaster Kata session!
-

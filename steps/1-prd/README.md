@@ -42,4 +42,4 @@ Before generating your PRD, review these resources:
 
 ## Next Step
 
-Once your PRD is ready, proceed to [Step 2: Install Taskmaster & Learn Basics](../2-tm-basics/README.md)
+Once your PRD is ready, proceed to [Step 2: Initialize Taskmaster & Parse PRD](../2-initialize-and-parse/README.md) to transform your PRD into actionable tasks!
