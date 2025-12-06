@@ -98,12 +98,12 @@ task-master list
 
 **Perform research with project context:**
 ```bash
-task-master research --query "How to implement OAuth2 authentication in Node.js"
+task-master research "How to implement OAuth2 authentication in Node.js"
 ```
 
 **Save research to a file:**
 ```bash
-task-master research --query "Best practices for REST API design" --save-to-file --save-to=research/api-design.md
+task-master research "Best practices for REST API design" --save-file
 ```
 
 **Use research to inform task expansion:**
@@ -126,7 +126,7 @@ task-master expand --id=<task-id> --research
 
 **Analyze your project complexity:**
 ```bash
-task-master analyze-project-complexity
+task-master analyze-complexity
 ```
 
 **View the complexity report:**
@@ -139,20 +139,16 @@ task-master complexity-report
 - Tasks that are too simple (could be combined)
 - Recommendations for optimization
 
-**Scope down complex tasks:**
+**Break down complex tasks:**
 ```bash
-task-master scope-down-task --id=<complex-task-id>
-```
-
-**Scope up simple tasks:**
-```bash
-task-master scope-up-task --id=<simple-task-id>
+# Use expand to break down complex tasks identified in the report
+task-master expand --id=<complex-task-id>
 ```
 
 **💡 Try this:**
 - Run complexity analysis
 - Review the recommendations
-- Scope down one complex task
+- Expand a complex task
 - Notice how it gets broken into better-sized pieces
 
 **✅ Checkpoint:** You can analyze and optimize task complexity!
