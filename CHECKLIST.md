@@ -40,10 +40,10 @@ Track your progress through the kata session by checking off completed steps.
 - [ ] Create and manage dependencies: `task-master add-dependency --id=<id> --depends-on=<dep-id>`
 - [ ] Create tags: `task-master tags add <name>`
 - [ ] Switch tag context: `task-master tags use <name>`
-- [ ] Perform AI research: `task-master research --query "..." --save-to-file`
-- [ ] Analyze complexity: `task-master analyze-project-complexity`
+- [ ] Perform AI research: `task-master research "..." --save-file`
+- [ ] Analyze complexity: `task-master analyze-complexity`
 - [ ] View complexity report: `task-master complexity-report`
-- [ ] Scope down a complex task: `task-master scope-down-task --id=<id>`
+- [ ] Break down a complex task: `task-master expand --id=<id>`
 - [ ] Update task with AI: `task-master update-task --id=<id> --prompt "..."`
 
 ## 4. Autopilot TDD & MCP Integration

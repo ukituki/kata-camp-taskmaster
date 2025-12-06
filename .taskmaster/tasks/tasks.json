@@ -128,7 +128,8 @@
         "testStrategy": "Test creation of memberships and verify expiration date calculation. Test the renewal endpoint to ensure it extends the correct date. Verify filtering returns correct subset of data.",
         "priority": "high",
         "dependencies": [
-          2
+          2,
+          "4"
         ],
         "status": "pending",
         "subtasks": []
@@ -194,6 +195,42 @@
       "created": "2025-12-06T00:41:41.671Z",
       "updated": "2025-12-06T00:41:41.671Z",
       "description": "Tasks for master context"
+    }
+  },
+  "frontend": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Develop Login Form UI Component",
+        "description": "Create a responsive and accessible login form with email/username and password inputs, including client-side validation.",
+        "details": "Implementation should utilize the project's existing UI library (e.g., React/Vue/Angular based on codebase analysis). The form needs to include:\n1. Input fields for 'Email/Username' and 'Password'.\n2. 'Show/Hide Password' toggle functionality.\n3. A 'Remember Me' checkbox.\n4. A submit button with loading state support.\n5. Links for 'Forgot Password' and 'Sign Up'.\n6. Client-side validation logic (required fields, email format) displaying inline error messages.\n7. Structure should follow semantic HTML for accessibility (ARIA labels, proper tab index).\n8. Styling should align with the design system tokens defined in the project structure.",
+        "testStrategy": "1. Verify rendering of all form elements (inputs, buttons, links).\n2. Test input validation: submit empty form, invalid email format, and verify error messages appear.\n3. Test 'Show/Hide Password' toggle works correctly.\n4. Verify form submission triggers the appropriate handler/API call with correct payload.\n5. Check responsiveness on mobile and desktop viewports.\n6. Audit accessibility using a screen reader or automated tools like Axe.",
+        "status": "pending",
+        "dependencies": [],
+        "priority": "medium",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-12-06T00:52:58.163Z",
+      "updated": "2025-12-06T00:53:39.169Z",
+      "description": "Tag created on 12/6/2025"
+    }
+  },
+  "backend": {
+    "tasks": [],
+    "metadata": {
+      "created": "2025-12-06T00:53:00.109Z",
+      "updated": "2025-12-06T00:53:00.109Z",
+      "description": "Tag created on 12/6/2025"
+    }
+  },
+  "testing": {
+    "tasks": [],
+    "metadata": {
+      "created": "2025-12-06T00:53:02.004Z",
+      "updated": "2025-12-06T00:53:02.004Z",
+      "description": "Tag created on 12/6/2025"
     }
   }
 }
