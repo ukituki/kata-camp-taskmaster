@@ -16,7 +16,7 @@ The kata session is organized into 5 steps:
 - **Step 1: Vision → Plan** - Create a PRD document (`steps/1-prd/`)
 - **Step 2: Initialize & Parse** - Install Taskmaster, parse PRD, explore tasks (`steps/2-initialize-and-parse/`)
 - **Step 3: Advanced Features** - Dependencies, tags, research, complexity analysis (`steps/3-advanced-features/`)
-- **Step 4: Autopilot & MCP** - TDD workflow and editor integration (`steps/4-autopilot-mcp/`)
+- **Step 4: Autopilot & MCP** - TDD workflow and editor integration (`steps/4-autopilot/`)
 
 📋 **Track your progress:** See `CHECKLIST.md` for a simple checklist of all tasks.
 
@@ -114,7 +114,27 @@ After completing this kata session:
 4. Try the practice scenarios for additional learning
 5. Share your experience and tips with the community
 
-## Feedback
+## Starting for New Users
+
+To get started with this kata session, clone the repository and install dependencies:
+
+```bash
+# Clone the repository
+git clone https://github.com/ukituki/kata-camp-taskmaster.git
+
+# Navigate to the directory
+cd kata-camp-taskmaster
+
+# Start with Step 0 to verify prerequisites
+./steps/0-setup/check-prerequisites.sh
+```
+
+## Contact & Connect
+
+Created by **Lukasz Wrobel**
+
+- 🐦 **X (Twitter):** [@ukituki](http://x.com/ukituki)
+- 💼 **LinkedIn:** [Lukasz Wrobel](https://www.linkedin.com/in/wrobel/)
 
 We'd love to hear about your experience with this kata session! Please share:
 - What worked well
