@@ -1,0 +1,199 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Project Initialization and Infrastructure Setup",
+        "description": "Initialize the project repository with the required technology stack including React, TypeScript, Tailwind CSS, and the backend server.",
+        "details": "Initialize a Vite-based React project with TypeScript. Configure Tailwind CSS for styling. Set up the backend structure using Node.js with Express (or Next.js API routes if preferred). Install necessary dependencies: `react-router-dom` for routing, `zustand` for state management, `axios` for HTTP requests, `react-hook-form` and `zod` for forms. Create the initial folder structure (`src/components`, `src/pages`, `src/services`, `server/`, etc.). Configure ESLint and Prettier for code quality.",
+        "testStrategy": "Verify project builds without errors. Check if Tailwind classes are applied correctly. Ensure the development server starts for both frontend and backend.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Database Schema Design and ORM Setup",
+        "description": "Design the database schema for Visitors, Memberships, and Animals and set up the ORM.",
+        "details": "Choose SQLite for the MVP as per PRD. Install and configure Prisma (or Drizzle). Define the schema in `schema.prisma` including models for `User` (Admin/Staff), `Visitor` (name, email, phone, visitDate, etc.), `Membership` (type, startDate, expirationDate, link to Visitor), and `Animal` (name, species, care logs). Include relations like Membership-Visitor and Animal-FeedingLogs. Run migrations to create the database file.",
+        "testStrategy": "Run database migrations successfully. Use Prisma Studio or a database viewer to inspect the created tables and verify relationships.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Shared UI Components and Layout Implementation",
+        "description": "Create reusable UI components and the main application layout with navigation.",
+        "details": "Develop a responsive shell layout with a sidebar navigation (collapsible on mobile) and a top header containing the global search bar placeholder. Implement atomic components using Tailwind: Buttons, Cards, Inputs, Tables, and Modals. Ensure accessibility (ARIA labels). Create a `Layout` component that wraps the pages. Set up React Router with routes for Dashboard, Visitors, Memberships, and Animals.",
+        "testStrategy": "Visual inspection of the layout on Desktop and Mobile viewports. interactive testing of navigation links to ensure correct routing.",
+        "priority": "medium",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Atomic UI Components (Button, Input, Card)",
+            "description": "Create the foundational reusable components using Tailwind CSS to ensure UI consistency across the application.",
+            "dependencies": [],
+            "details": "Develop `Button.tsx` (variants: primary, secondary, danger; sizes: sm, md, lg), `Input.tsx` (supports label, helper text, error state, and ref forwarding), and `Card.tsx` (container with standard padding, border, and shadow). Use `class-variance-authority` or `clsx` for managing Tailwind class logic.",
+            "status": "pending",
+            "testStrategy": "Render components in a temporary test page or Storybook. Verify click handlers execute and style variants apply correctly based on props."
+          },
+          {
+            "id": 2,
+            "title": "Implement Complex Interactive Components (Table, Modal)",
+            "description": "Develop reusable Table and Modal components for data display and user interactions like forms or confirmations.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create a `Table` component that accepts columns and data props for standardized rendering. Create a `Modal` component using React Portals that includes a backdrop, accessible title, body, footer, and handles closing via backdrop click or ESC key.",
+            "status": "pending",
+            "testStrategy": "Test Modal opening/closing logic and focus trapping. Verify Table renders data arrays correctly and handles empty states visually."
+          },
+          {
+            "id": 3,
+            "title": "Develop Responsive App Layout and Navigation",
+            "description": "Build the main application shell including Sidebar, Header, and a Layout wrapper to contain page content.",
+            "dependencies": [
+              1
+            ],
+            "details": "Create `Layout.tsx` as the main wrapper. Implement `Sidebar` with navigation links that collapses into a hamburger menu on mobile viewports. Implement `Header` containing the global search bar placeholder. Ensure the layout handles scrolling content correctly.",
+            "status": "pending",
+            "testStrategy": "Resize window to mobile width (e.g., <768px) to verify Sidebar collapse mechanism. Verify Header stays fixed or flows as intended."
+          },
+          {
+            "id": 4,
+            "title": "Configure React Router and Placeholder Pages",
+            "description": "Set up the client-side routing architecture and create initial placeholder views for the application modules.",
+            "dependencies": [
+              3
+            ],
+            "details": "Configure `react-router-dom`. Define routes for `/dashboard`, `/visitors`, `/memberships`, and `/animals`. Create simple placeholder components for these pages. Wrap the routes with the `Layout` component created in the previous step.",
+            "status": "pending",
+            "testStrategy": "Click through all navigation links in the Sidebar. Verify the URL updates correctly and the corresponding placeholder content loads in the main area."
+          },
+          {
+            "id": 5,
+            "title": "Finalize UI Accessibility and Responsive Polish",
+            "description": "Ensure all components and layouts meet accessibility standards and respond correctly to different device sizes.",
+            "dependencies": [
+              2,
+              4
+            ],
+            "details": "Audit components for ARIA attributes (e.g., `aria-expanded` on sidebar toggle, `role=\"dialog\"` on modals). Ensure keyboard navigation works for the Sidebar and Modal. Verify consistent spacing and typography scales in `tailwind.config.js`.",
+            "status": "pending",
+            "testStrategy": "Use keyboard-only navigation (Tab/Enter/Esc) to traverse the menu and interact with a test modal. Run a basic accessibility check using a browser extension like WAVE."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Backend API Development for Visitors",
+        "description": "Implement RESTful API endpoints for Visitor management.",
+        "details": "Create Express routes for CRUD operations on Visitors: `GET /api/visitors`, `GET /api/visitors/:id`, `POST /api/visitors`, `PUT /api/visitors/:id`, `DELETE /api/visitors/:id`. Implement controller logic using the ORM to interact with the database. Add validation middleware using Zod to ensure data integrity (e.g., valid email format). Handle edge cases like duplicate visitors.",
+        "testStrategy": "Use Postman or curl to test all endpoints. Verify successful creation, retrieval, updates, and deletion of visitor records. Test validation errors with invalid data.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Visitor Management Frontend Implementation",
+        "description": "Build the frontend pages for listing, adding, and editing visitors.",
+        "details": "Create `VisitorsList` page with a table displaying visitors, including pagination and filtering. Create `VisitorForm` component using `react-hook-form` and `zod` for validation. specific fields: name, email, phone, group size. Implement the 'Add Visitor' flow. Create `VisitorDetail` page to show history. Integrate with the backend API using Axios/Fetch.",
+        "testStrategy": "User acceptance testing: Add a new visitor, verify they appear in the list. Edit visitor details and verify persistence. Check pagination logic.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Backend API Development for Memberships",
+        "description": "Implement RESTful API endpoints for Membership management including auto-renewal logic.",
+        "details": "Create endpoints: `GET /api/memberships`, `POST /api/memberships` (create new), `POST /api/memberships/renew` (renew). Implement logic to automatically calculate expiration dates (e.g., +1 year) upon creation or renewal. Implement filtering parameters for 'expiring soon'. Ensure memberships can be linked to existing Visitor IDs.",
+        "testStrategy": "Test creation of memberships and verify expiration date calculation. Test the renewal endpoint to ensure it extends the correct date. Verify filtering returns correct subset of data.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Membership Management Frontend Implementation",
+        "description": "Develop the interface for managing memberships, renewals, and expiration tracking.",
+        "details": "Create `MembershipsList` page with tabs/filters for 'Active', 'Expiring Soon', and 'Expired'. Build a form to create new memberships, allowing selection of an existing visitor or creating a new one. Implement the 'Renew' button functionality on the list/detail view. Visual indicators (colors/badges) for status.",
+        "testStrategy": "Create a membership and check if it appears in the Active list. Manually set a near-expiry date in DB and check if it appears in 'Expiring Soon'. Test the renew flow.",
+        "priority": "high",
+        "dependencies": [
+          3,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Animal Care Backend & Frontend",
+        "description": "Implement full stack functionality for Animal records, including feeding and vet logs.",
+        "details": "Backend: API for Animals (CRUD) and nested resources for `FeedingLog` and `VetVisit`. Frontend: `AnimalList` with filters (Species, Habitat). `AnimalDetail` page displaying info and two related lists: Feeding History and Vet Visits. Forms to 'Log Feeding' and 'Log Vet Visit'. Ensure forms validate dates (no future dates for logs unless backdating allowed with note).",
+        "testStrategy": "Add an animal. Add several feeding logs. Verify they appear in chronological order on the detail page. Test search by species.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Global Search and Dashboard Aggregation",
+        "description": "Implement the Dashboard summary view and Global Search functionality.",
+        "details": "Create a `Dashboard` page fetching aggregated metrics: Today's visitor count, Active Members, Upcoming Events (mocked if events not fully impl), Animal Care alerts. Implement the Global Search bar in the header: Debounced input that calls a search endpoint (`/api/search?q=...`) which queries Visitors, Members, and Animals, returning grouped results. Navigate to detail pages on click.",
+        "testStrategy": "Verify dashboard numbers match actual data in DB. Type a known name in global search and verify it finds the correct Visitor/Member/Animal.",
+        "priority": "medium",
+        "dependencies": [
+          5,
+          7,
+          8
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 10,
+        "title": "Final Polish, Error Handling, and Deployment Prep",
+        "description": "Refine UI/UX, implement comprehensive error handling, and prepare for MVP release.",
+        "details": "Implement a global Error Boundary in React. Add toast notifications (using a library like `react-hot-toast` or `sonner`) for success/error actions (e.g., 'Visitor Added Successfully'). Audit for accessibility (tab order, contrast). Ensure responsive behavior on tablet sizes. Clean up code, remove console logs, and write basic documentation (README).",
+        "testStrategy": "Trigger network errors (disconnect internet) and verify graceful degradation. Tab through the app to ensure keyboard navigability. Verify mobile/tablet layout responsiveness.",
+        "priority": "medium",
+        "dependencies": [
+          9
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-12-06T00:41:41.671Z",
+      "updated": "2025-12-06T00:41:41.671Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
