@@ -48,16 +48,14 @@ Track your progress through the kata session by checking off completed steps.
 
 ## 4. Autopilot TDD & MCP Integration
 
-- [ ] Select a task for autopilot: `task-master list --status pending`
-- [ ] Start autopilot: `task-master autopilot-start --task-id=<id>`
-- [ ] Check autopilot status: `task-master autopilot-status`
-- [ ] Get next action: `task-master autopilot-next`
-- [ ] Complete RED phase (write failing tests)
-- [ ] Complete GREEN phase (implement to pass tests)
-- [ ] Commit changes: `task-master autopilot-commit`
-- [ ] Finalize workflow: `task-master autopilot-finalize`
-- [ ] Test MCP in editor: Use AI chat to manage tasks
-- [ ] Create task via MCP: Ask AI to create a task from editor
+- [ ] Select a task: `task-master list --status pending`
+- [ ] Start autopilot: Ask AI "Start autopilot for task <id>"
+- [ ] Check status: Ask AI "What is the autopilot status?"
+- [ ] Complete RED phase: Write failing test & tell AI
+- [ ] Complete GREEN phase: Pass test & tell AI
+- [ ] Commit changes: Ask AI "Commit these changes"
+- [ ] Finalize: Ask AI "Finalize autopilot"
+- [ ] Test MCP: Ask AI "List my tasks" or "Create a task"
 
 ---
 

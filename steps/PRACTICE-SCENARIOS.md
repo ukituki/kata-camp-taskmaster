@@ -10,14 +10,14 @@ These scenarios can be used for additional practice after completing the basic k
 2. Expand it into subtasks
 3. Set up dependencies (e.g., database schema → API endpoints → frontend forms)
 4. Use tags to organize (backend, frontend, testing)
-5. Run autopilot for one of the subtasks
+5. Ask AI to start autopilot for one of the subtasks
 
 ## Scenario B: Bug Fix Workflow
 
 **Challenge**: Fix a critical bug in the payment processing system.
 
 1. Create a task with detailed bug description
-2. Perform research to understand the issue: `task-master research --query "payment processing bug"`
+2. Perform research to understand the issue: `task-master research "payment processing bug"`
 3. Break down into investigation → fix → test → deploy
 4. Track progress through each phase
 
@@ -34,8 +34,8 @@ These scenarios can be used for additional practice after completing the basic k
 
 **Challenge**: Plan a new feature using AI research.
 
-1. Perform research: `task-master research --query "How to implement OAuth2 authentication"`
-2. Save research to file: `task-master research --query "..." --save-to-file --save-to=research.md`
+1. Perform research: `task-master research "How to implement OAuth2 authentication"`
+2. Save research to file: `task-master research "..." --save-file`
 3. Use research to inform task planning
 4. Create tasks based on research findings
 
@@ -43,8 +43,8 @@ These scenarios can be used for additional practice after completing the basic k
 
 **Challenge**: Break down a complex project into manageable tasks.
 
-1. Analyze complexity: `task-master analyze-project-complexity`
+1. Analyze complexity: `task-master analyze-complexity`
 2. View report: `task-master complexity-report`
-3. Scope down complex tasks: `task-master scope-down-task --id=<id>`
-4. Scope up simple tasks: `task-master scope-up-task --id=<id>`
+3. Break down complex tasks: `task-master expand --id=<id>`
+4. Update task details: `task-master update-task --id=<id> --prompt "..."`
 
