@@ -18,17 +18,7 @@ Verify that all prerequisites are installed and configured before starting the k
    - npm (comes with Node.js)
    - Git: https://git-scm.com/downloads
 
-3. **Install Taskmaster globally:**
-   ```bash
-   npm install -g task-master-ai
-   ```
-   
-   Verify installation:
-   ```bash
-   task-master-ai --version
-   ```
-
-4. **Set up API keys:**
+3. **Set up API keys:**
 
    **Option 1: Using .env file (Recommended)**
    ```bash
@@ -50,14 +40,14 @@ Verify that all prerequisites are installed and configured before starting the k
    export OPENAI_API_KEY="your-key-here"       # Optional
    ```
 
-5. **Configure Taskmaster models:**
+4. **Configure Taskmaster models:**
    ```bash
    # Configure Taskmaster to use your preferred model
-   task-master-ai models --set-main claude-3-5-sonnet-20241022
-   task-master-ai models --set-research perplexity
+   task-master models --set-main claude-3-5-sonnet-20241022
+   task-master models --set-research perplexity
    ```
 
-6. **Verify everything is ready:**
+5. **Verify everything is ready:**
    ```bash
    ./check-prerequisites.sh
    ```
@@ -69,17 +59,19 @@ Verify that all prerequisites are installed and configured before starting the k
 ## Success Criteria
 
 - [ ] All prerequisites check pass (Node.js, npm, Git)
-- [ ] Taskmaster installed globally (`task-master-ai --version` works)
 - [ ] At least one API key is configured (in .env or environment)
-- [ ] Models configured (`task-master-ai models` shows your configuration)
+- [ ] Models configured (`task-master models` shows your configuration)
 - [ ] Prerequisites script shows green checkmarks
+
+**Note:** Taskmaster installation happens in Step 1, not here.
 
 ## Troubleshooting
 
 ### Issue: Taskmaster not found
 - Ensure Taskmaster is installed globally: `npm install -g task-master-ai`
-- Verify it's in your PATH: `task-master-ai --version`
+- Verify it's in your PATH: `which task-master`
 - If command not found, check your npm global bin path is in PATH
+- **Note:** The package is `task-master-ai` but the CLI command is `task-master`
 
 ### Issue: API key errors
 - Verify your API key is set correctly: `echo $ANTHROPIC_API_KEY`

@@ -7,52 +7,52 @@ Parse your PRD to automatically generate tasks in Taskmaster.
 
 1. **Parse your PRD:**
    ```bash
-   task-master-ai parse-prd --input steps/2-prd/my-prd.md
+   task-master parse-prd --input steps/1-prd/my-prd.md
    ```
    This will generate initial tasks based on your PRD.
 
 2. **Review generated tasks:**
    ```bash
-   task-master-ai get-tasks
+   task-master get-tasks
    ```
    See all the tasks that were created from your PRD.
 
 3. **Expand a complex task:**
    ```bash
    # Find a task ID from the list
-   task-master-ai get-tasks
+   task-master get-tasks
    
    # Expand it into subtasks
-   task-master-ai expand-task --id=<task-id>
+   task-master expand-task --id=<task-id>
    ```
 
 4. **Check task dependencies:**
    ```bash
-   task-master-ai validate-dependencies
+   task-master validate-dependencies
    ```
    Ensure there are no circular dependencies.
 
 5. **View task details:**
    ```bash
-   task-master-ai get-task --id=<task-id>
+   task-master get-task --id=<task-id>
    ```
 
 6. **Expand complex tasks:**
    ```bash
    # Expand a task into subtasks
-   task-master-ai expand-task --id=<task-id>
+   task-master expand-task --id=<task-id>
    
    # Or expand with research for better results
-   task-master-ai expand-task --id=<task-id> --research
+   task-master expand-task --id=<task-id> --research
    ```
 
 7. **Task updates with AI:**
    ```bash
    # Update a single task
-   task-master-ai update-task --id=<id> --prompt "Add authentication requirements"
+   task-master update-task --id=<id> --prompt "Add authentication requirements"
    
    # Update multiple tasks
-   task-master-ai update --from=<id> --prompt "New requirements: ..."
+   task-master update --from=<id> --prompt "New requirements: ..."
    ```
 
 ## Tips

@@ -13,8 +13,8 @@ A hands-on practice session for learning and mastering Taskmaster AI, an AI-powe
 The kata session is organized into 5 steps:
 
 - **Step 0: Setup** - Verify prerequisites (`steps/0-setup/`)
-- **Step 1: TM Basics** - Install and learn basic CLI commands (`steps/1-tm-basics/`)
-- **Step 2: Vision → Plan** - Create a PRD document (`steps/2-prd/`)
+- **Step 1: Vision → Plan** - Create a PRD document (`steps/1-prd/`)
+- **Step 2: TM Basics** - Install and learn basic CLI commands (`steps/2-tm-basics/`)
 - **Step 3: Plan → Tasks** - Parse PRD into tasks (`steps/3-parse-prd/`)
 - **Step 4: Task → Code** - Complete first task with autopilot (`steps/4-autopilot/`)
 
@@ -101,7 +101,7 @@ Follow the steps in order, starting with [Step 0: Setup](steps/0-setup/README.md
 ## Additional Resources
 
 - **Practice Scenarios**: See [steps/PRACTICE-SCENARIOS.md](steps/PRACTICE-SCENARIOS.md) for additional practice exercises
-- **Command Reference**: See [Step 1](steps/1-tm-basics/README.md) for common commands
+- **Command Reference**: See [Step 2](steps/2-tm-basics/README.md) for common commands
 - **Troubleshooting**: See [Step 0](steps/0-setup/README.md) for setup troubleshooting
 
 ## Next Steps

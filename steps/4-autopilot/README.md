@@ -7,25 +7,25 @@ Complete your first task using Taskmaster's autopilot TDD workflow.
 
 1. **Select a simple task:**
    ```bash
-   task-master-ai get-tasks --status pending
+   task-master get-tasks --status pending
    ```
    Choose a simple task to implement (e.g., "Set up project structure").
 
 2. **Start autopilot:**
    ```bash
-   task-master-ai autopilot-start --task-id=<task-id>
+   task-master autopilot-start --task-id=<task-id>
    ```
    This initializes the TDD workflow.
 
 3. **Check autopilot status:**
    ```bash
-   task-master-ai autopilot-status
+   task-master autopilot-status
    ```
    See the current phase and progress.
 
 4. **Get next action:**
    ```bash
-   task-master-ai autopilot-next
+   task-master autopilot-next
    ```
    Follow the instructions provided.
 
@@ -33,25 +33,25 @@ Complete your first task using Taskmaster's autopilot TDD workflow.
    - Write failing tests as instructed
    - Complete the phase:
      ```bash
-     task-master-ai autopilot-complete-phase --test-results='{"total":3,"passed":0,"failed":3}'
+     task-master autopilot-complete-phase --test-results='{"total":3,"passed":0,"failed":3}'
      ```
 
 6. **Complete GREEN phase:**
    - Implement code to pass the tests
    - Complete the phase:
      ```bash
-     task-master-ai autopilot-complete-phase --test-results='{"total":3,"passed":3,"failed":0}'
+     task-master autopilot-complete-phase --test-results='{"total":3,"passed":3,"failed":0}'
      ```
 
 7. **Commit changes:**
    ```bash
-   task-master-ai autopilot-commit
+   task-master autopilot-commit
    ```
    This creates a git commit with an appropriate message.
 
 8. **Finalize workflow:**
    ```bash
-   task-master-ai autopilot-finalize
+   task-master autopilot-finalize
    ```
    Complete the autopilot workflow.
 
@@ -74,13 +74,13 @@ The autopilot follows Test-Driven Development:
 ## Troubleshooting
 
 ### Issue: Autopilot stuck
-- Check status with `task-master-ai autopilot-status`
-- Resume with `task-master-ai autopilot-resume` if workflow was interrupted
-- Abort if needed: `task-master-ai autopilot-abort`
+- Check status with `task-master autopilot-status`
+- Resume with `task-master autopilot-resume` if workflow was interrupted
+- Abort if needed: `task-master autopilot-abort`
 
 ### Issue: Circular dependencies
-- Use `task-master-ai validate-dependencies` to check for issues
-- Use `task-master-ai fix-dependencies` to automatically fix problems
+- Use `task-master validate-dependencies` to check for issues
+- Use `task-master fix-dependencies` to automatically fix problems
 
 ## Congratulations! 🎉
 

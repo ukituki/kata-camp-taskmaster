@@ -17,7 +17,7 @@ These scenarios can be used for additional practice after completing the basic k
 **Challenge**: Fix a critical bug in the payment processing system.
 
 1. Create a task with detailed bug description
-2. Perform research to understand the issue: `task-master-ai research --query "payment processing bug"`
+2. Perform research to understand the issue: `task-master research --query "payment processing bug"`
 3. Break down into investigation → fix → test → deploy
 4. Track progress through each phase
 
@@ -34,8 +34,8 @@ These scenarios can be used for additional practice after completing the basic k
 
 **Challenge**: Plan a new feature using AI research.
 
-1. Perform research: `task-master-ai research --query "How to implement OAuth2 authentication"`
-2. Save research to file: `task-master-ai research --query "..." --save-to-file --save-to=research.md`
+1. Perform research: `task-master research --query "How to implement OAuth2 authentication"`
+2. Save research to file: `task-master research --query "..." --save-to-file --save-to=research.md`
 3. Use research to inform task planning
 4. Create tasks based on research findings
 
@@ -43,8 +43,8 @@ These scenarios can be used for additional practice after completing the basic k
 
 **Challenge**: Break down a complex project into manageable tasks.
 
-1. Analyze complexity: `task-master-ai analyze-project-complexity`
-2. View report: `task-master-ai complexity-report`
-3. Scope down complex tasks: `task-master-ai scope-down-task --id=<id>`
-4. Scope up simple tasks: `task-master-ai scope-up-task --id=<id>`
+1. Analyze complexity: `task-master analyze-project-complexity`
+2. View report: `task-master complexity-report`
+3. Scope down complex tasks: `task-master scope-down-task --id=<id>`
+4. Scope up simple tasks: `task-master scope-up-task --id=<id>`
 
